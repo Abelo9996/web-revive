@@ -1,0 +1,49 @@
+{
+  "source": "http://www.albinoblacksheep.com/flash/badger",
+  "pageFetched": false,
+  "pageLive": false,
+  "games": [],
+  "pageCaptures": [
+    {
+      "timestamp": "20041029074325",
+      "originalUrl": "http://www.albinoblacksheep.com:80/flash/badger",
+      "mimetype": "text/html",
+      "statusCode": "302",
+      "digest": "OAN5DJJOFJN6V4CF2ADAG47LJVKTNERB",
+      "length": "478",
+      "rawUrl": "https://web.archive.org/web/20041029074325id_/http://www.albinoblacksheep.com:80/flash/badger"
+    },
+    {
+      "timestamp": "20150905011011",
+      "originalUrl": "http://www.albinoblacksheep.com:80/flash/badger",
+      "mimetype": "text/html",
+      "statusCode": "404",
+      "digest": "INN52T7CWB2XC2QET3G3MBKFHQCGTMVK",
+      "length": "4611",
+      "rawUrl": "https://web.archive.org/web/20150905011011id_/http://www.albinoblacksheep.com:80/flash/badger"
+    }
+  ],
+  "assetCaptures": [],
+  "downloaded": [],
+  "requests": [
+    {
+      "url": "http://www.albinoblacksheep.com/flash/badger",
+      "note": "page",
+      "status": 404
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.albinoblacksheep.com%2Fflash%2Fbadger&output=json&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest%2Clength&collapse=digest&limit=10",
+      "note": "wayback CDX",
+      "status": 200
+    },
+    {
+      "url": "https://web.archive.org/web/20150905011011id_/http://www.albinoblacksheep.com:80/flash/badger",
+      "note": "archived page",
+      "status": 404
+    }
+  ],
+  "notes": [
+    "Page returned status 404; looking in the Internet Archive.",
+    "No page HTML could be read, live or archived."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "source": "http://www.homestarrunner.com/main.swf",
+  "pageFetched": false,
+  "pageLive": false,
+  "games": [
+    {
+      "type": "flash",
+      "src": "http://www.homestarrunner.com/main.swf",
+      "width": null,
+      "height": null,
+      "evidence": "direct file URL (archived)"
+    }
+  ],
+  "pageCaptures": [],
+  "assetCaptures": [
+    {
+      "requested": "http://www.homestarrunner.com/main.swf",
+      "captures": [
+        {
+          "timestamp": "20111019115231",
+          "originalUrl": "http://www.homestarrunner.com/main.swf",
+          "mimetype": "text/html",
+          "statusCode": "200",
+          "digest": "CNEPDYZXATABV73SKXPSGEFPFYQ7HEHE",
+          "length": "1089",
+          "rawUrl": "https://web.archive.org/web/20111019115231id_/http://www.homestarrunner.com/main.swf"
+        }
+      ]
+    }
+  ],
+  "downloaded": [
+    {
+      "requestedUrl": "http://www.homestarrunner.com/main.swf",
+      "path": "/Users/abelyagubyan/Downloads/web-revive/.work/wayback/game/main.swf",
+      "bytes": 1553,
+      "sha256": "918b71a98fd769e7e69a4a40bb20f8b7b627a1c0f5ebf5b5a295608455f0f490",
+      "captureTimestamp": "20111019115231"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://www.homestarrunner.com/main.swf",
+      "note": "direct game file",
+      "status": 404
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.homestarrunner.com%2Fmain.swf&output=json&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest%2Clength&collapse=digest&limit=20",
+      "note": "wayback CDX",
+      "status": 200
+    },
+    {
+      "url": "https://web.archive.org/web/20111019115231id_/http://www.homestarrunner.com/main.swf",
+      "note": "archived game file",
+      "status": 200
+    }
+  ],
+  "notes": [
+    "Direct file is not reachable live; looking in the Internet Archive."
+  ]
+}
