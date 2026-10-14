@@ -9,9 +9,9 @@
 [![Node 20+](https://img.shields.io/badge/node-20%2B-339933?logo=nodedotjs&logoColor=white)](package.json)
 [![MCP server](https://img.shields.io/badge/MCP-server-5c4ee5)](#use-it-with-your-agent)
 
-<img src="docs/demo.gif" alt="A small open-source Flash animation running in the browser through Ruffle, played in headless Chrome during verify" width="420" />
+<img src="docs/demo.gif" alt="Math Slash, an open-source ActionScript 2 Flash game, running in the browser through Ruffle, played in headless Chrome during verify" width="420" />
 
-<sub>An open-source Flash animation (<a href="examples/flash-bounce">examples/flash-bounce</a>), revived by web-revive and played in headless Chrome during <code>verify</code>.</sub>
+<sub>Math Slash, a real open-source ActionScript 2 Flash game (<a href="examples/flash-mathslash">examples/flash-mathslash</a>), revived by web-revive and played in headless Chrome during <code>verify</code>.</sub>
 
 [Try it](#try-it) · [Use it with your agent](#use-it-with-your-agent) · [Real revivals](#real-revivals) · [How it works](#how-it-works) · [Limits](#what-it-cant-do)
 
@@ -36,20 +36,23 @@ npm install && npm run build && npm link   # puts `web-revive` on your PATH
 npx playwright install chromium            # the browser `verify` uses
 ```
 
-Then revive the open-source Flash animation from the GIF above:
+Then revive the open-source Flash game from the GIF above:
 
 ```bash
-WS=/tmp/bounce && mkdir -p $WS/game && cp examples/flash-bounce/bounce.swf $WS/game/
+WS=/tmp/mathslash && mkdir -p $WS/game && cp examples/flash-mathslash/MathSlash.swf $WS/game/
+web-revive inspect  $WS/game/MathSlash.swf --save $WS
 web-revive runtime ruffle --save $WS
-web-revive package $WS --title "Bounce" --source-url examples/flash-bounce
-web-revive verify  $WS --seconds 3        # open $WS/site with `web-revive serve $WS/site` to play it
+web-revive package $WS --title "Math Slash" \
+  --source-url https://github.com/andy-shi88/MathSlash \
+  --license examples/flash-mathslash/License.md
+web-revive verify  $WS --seconds 5        # open $WS/site with `web-revive serve $WS/site` to play it
 ```
 
 What `verify` printed on a fresh run (Apple Silicon, Ruffle nightly-2026-10-13):
 
 ```
 Verify pass (flash/ruffle)
-Started: true  Non-blank: true  Frames: 180, fps 59.9
+Started: true  Non-blank: true  Frames: 179, fps 35.6
   note: Stage content changed across the observation window.
 ```
 
@@ -78,14 +81,18 @@ evidence bundle and a screenshot.
 
 | Game | What it is | Result |
 | --- | --- | --- |
-| [flash-bounce](examples/flash-bounce) | Open-source Flash animation (AS1/AS2 era, no ActionScript) | Plays in Ruffle, about 60 fps, stage draws and changes, no console errors |
+| [flash-mathslash](examples/flash-mathslash) | Math Slash, a real open-source ActionScript 2 Flash game (GPL-3.0) | Plays in Ruffle, about 35.6 fps, intro animates into the menu, no console errors or warnings |
+| [java-reversi](examples/java-reversi) | Reversi (Othello), a real GPL-3.0 Java 1.1 applet | Full board game runs in CheerpJ, interactive AWT applet, canvas draws and changes, no console errors |
 | [java-foilsim](examples/java-foilsim) | FoilSim III, a NASA Java applet | Full simulator runs in CheerpJ, about 21.7 fps, canvas draws and changes |
+| [flash-bounce](examples/flash-bounce) | A minimal Flash fixture, generated here (AS1/AS2 timeline, no ActionScript) | Plays in Ruffle, about 60 fps, stage draws and changes, no console errors |
 | [wayback](examples/wayback) | A dead page and a dead file | `find` located Internet Archive captures and recovered the bytes; `inspect` reported honestly what they were |
-| [bounce-as3](examples/flash-bounce) | The same movie marked ActionScript 3 | `inspect` rates it `may-have-problems` and says Ruffle's AS3 support is only partial |
+| [bounce-as3](examples/flash-bounce) | The same fixture marked ActionScript 3 | `inspect` rates it `may-have-problems` and says Ruffle's AS3 support is only partial |
 
-One honest note: FoilSim is NASA's work and its repository states no license, so
-[examples/java-foilsim](examples/java-foilsim) keeps only the report and a screenshot, not the `.jar`. The
-README there shows how to download it and reproduce the run.
+Two of these redistribute someone else's game, each under its own clear open-source license, kept next to the
+file: Math Slash is GPL-3.0 and Reversi is GPL-3.0. FoilSim is the exception: it is NASA's work and its
+repository states no license, so [examples/java-foilsim](examples/java-foilsim) keeps only the report and a
+screenshot, not the `.jar`; the README there shows how to download it and reproduce the run. `flash-bounce` is
+original MIT work generated in this repo, kept as a tiny self-contained fixture rather than the headline.
 
 ## How it works
 
@@ -126,9 +133,11 @@ Every step is a CLI subcommand (add `--json`) and an MCP tool. The tool never ca
 ## Rights and licensing
 
 You need the right to share a game before you publish it. web-revive only works on your machine and never
-uploads anything. The examples here redistribute only content that may be redistributed: `flash-bounce` is
-original MIT work, and `java-foilsim` keeps only a report and screenshot because NASA's FoilSim states no
-license. When you revive someone else's game, keep its license with it, or keep only the report.
+uploads anything. The examples here redistribute only content that may be redistributed: `flash-mathslash`
+(Math Slash) and `java-reversi` (Reversi) each ship under their own GPL-3.0 license, kept next to the file;
+`flash-bounce` is original MIT work; and `java-foilsim` keeps only a report and screenshot because NASA's
+FoilSim states no license. When you revive someone else's game, keep its license with it, or keep only the
+report.
 
 ## Privacy
 

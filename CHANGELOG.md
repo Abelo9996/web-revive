@@ -3,6 +3,23 @@
 All notable changes to this project are documented here. The format is based on
 Keep a Changelog, and this project aims to follow Semantic Versioning.
 
+## [Unreleased]
+
+### Added
+- `examples/flash-mathslash`: Math Slash, a real open-source ActionScript 2 Flash game (GPL-3.0, from
+  [andy-shi88/MathSlash](https://github.com/andy-shi88/MathSlash)), revived end to end. `verify` reported
+  `started`, non-blank, changing frames at about 35.6 fps in headless Chromium (Ruffle nightly-2026-10-13)
+  with no console errors or warnings; the intro animates into the menu. The `.swf` and its license are in
+  the folder.
+- `examples/java-reversi`: Reversi (Othello), a real GPL-3.0 Java 1.1 applet (from
+  [kwfenske/reversi-game-java](https://github.com/kwfenske/reversi-game-java)), revived end to end with
+  CheerpJ. `verify` reported `started`, non-blank, changing canvas with no console errors; the board, the
+  controls, and the Othello opening position render. The `.jar` and its license are in the folder.
+
+### Changed
+- The README demo GIF is now the Math Slash revival (a real open-source game) instead of the generated
+  bounce fixture. `flash-bounce` is retained as a minimal self-contained fixture rather than the headline.
+
 ## [0.1.0] - 2026-10-14
 
 First release. An MVP that revives Flash and Java web games in a modern browser.
