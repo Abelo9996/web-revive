@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "kind": "java",
+  "runtime": "cheerpj",
+  "started": true,
+  "consoleErrors": [],
+  "runtimeWarnings": [],
+  "canvasNonBlank": true,
+  "canvasChanged": true,
+  "frames": 10,
+  "fps": 1.7,
+  "durationMs": 6006,
+  "interactions": [
+    {
+      "kind": "click",
+      "detail": "#wr-stage"
+    },
+    {
+      "kind": "key",
+      "detail": "Space"
+    },
+    {
+      "kind": "key",
+      "detail": "ArrowRight"
+    }
+  ],
+  "metadata": {
+    "canvasWidth": 700,
+    "canvasHeight": 500
+  },
+  "screenshots": [
+    "/Users/abelyagubyan/Downloads/web-revive/.work/java-reversi/evidence/screenshots/start.png",
+    "/Users/abelyagubyan/Downloads/web-revive/.work/java-reversi/evidence/screenshots/end.png"
+  ],
+  "notes": [
+    "Stage content changed across the observation window."
+  ],
+  "warnings": []
+}
