@@ -50,9 +50,10 @@ export async function packageSite(workspaceRoot: string, input: PackageInput): P
   }
 
   let licenseName: string | null = null;
-  if (input.licenseFile && existsSync(input.licenseFile)) {
-    licenseName = path.basename(input.licenseFile);
-    await copyFile(input.licenseFile, path.join(ws.siteDir, licenseName));
+  if (input.licenseFile) {
+    const licensePath = resolveLicense(input.licenseFile, input.gameFile);
+    licenseName = path.basename(licensePath);
+    await copyFile(licensePath, path.join(ws.siteDir, licenseName));
   }
 
   const width = input.width ?? (input.kind === "flash" ? DEFAULT_FLASH.width : DEFAULT_JAVA.width);
@@ -113,4 +114,20 @@ export async function packageSite(workspaceRoot: string, input: PackageInput): P
   };
   await ws.writeJson("package.json", result);
   return result;
+}
+
+/**
+ * Find the license file to ship. A relative path is looked up next to the game
+ * file first, then from the current directory, so a bare `LICENSE` never picks
+ * up an unrelated license from wherever the command happens to run. A missing
+ * file is an error: shipping a game without its license, or with the wrong
+ * one, is worse than not packaging it.
+ */
+export function resolveLicense(licenseFile: string, gameFile: string): string {
+  const candidates = path.isAbsolute(licenseFile)
+    ? [licenseFile]
+    : [path.resolve(path.dirname(gameFile), licenseFile), path.resolve(licenseFile)];
+  const found = candidates.find((c) => existsSync(c));
+  if (!found) throw new Error(`license file not found: ${licenseFile} (looked in: ${candidates.join(", ")})`);
+  return found;
 }

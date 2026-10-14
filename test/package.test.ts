@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import { mkdtemp, rm, writeFile, mkdir, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { packageSite } from "../src/ops/package.js";
+import { packageSite, resolveLicense } from "../src/ops/package.js";
 import { buildSwf, buildZip, fakeClass } from "./fixtures.js";
 
 describe("packageSite", () => {
@@ -67,5 +67,20 @@ describe("packageSite", () => {
     const gameFile = path.join(dir, "g.swf");
     await writeFile(gameFile, buildSwf());
     await expect(packageSite(path.join(dir, "w2"), { gameFile, kind: "flash" })).rejects.toThrow(/Ruffle/);
+  });
+  it("looks up a relative license next to the game before the current directory", async () => {
+    const gameDir = path.join(dir, "game");
+    await mkdir(gameDir, { recursive: true });
+    const gameFile = path.join(gameDir, "game.swf");
+    await writeFile(gameFile, "x");
+    await writeFile(path.join(gameDir, "LICENSE"), "GPL");
+    // The test runs from the repo root, which has its own LICENSE; it must not be picked.
+    expect(resolveLicense("LICENSE", gameFile)).toBe(path.join(gameDir, "LICENSE"));
+  });
+
+  it("fails instead of silently dropping a missing license", async () => {
+    const gameFile = path.join(dir, "game.swf");
+    await writeFile(gameFile, "x");
+    expect(() => resolveLicense("NO-SUCH-LICENSE.md", gameFile)).toThrow(/license file not found/);
   });
 });

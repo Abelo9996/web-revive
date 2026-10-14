@@ -20,6 +20,11 @@ Keep a Changelog, and this project aims to follow Semantic Versioning.
 - The README demo GIF is now the Math Slash revival (a real open-source game) instead of the generated
   bounce fixture. `flash-bounce` is retained as a minimal self-contained fixture rather than the headline.
 
+### Fixed
+- `package --license` now looks up a relative path next to the game file first, then the current
+  directory, and fails if the file is missing. Before, a bare `LICENSE` run from this repo picked up
+  web-revive's own MIT license instead of the game's, and a missing file was silently dropped.
+
 ## [0.1.0] - 2026-10-14
 
 First release. An MVP that revives Flash and Java web games in a modern browser.

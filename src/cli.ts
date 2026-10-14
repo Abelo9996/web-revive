@@ -110,7 +110,7 @@ program
   .option("--main <class>", "Java Main-Class for a non-applet app")
   .option("--source-url <url>", "original page URL for the credits")
   .option("--capture <timestamp>", "Internet Archive capture timestamp for the credits")
-  .option("--license <file>", "license file to carry into the site")
+  .option("--license <file>", "license file to carry into the site (relative paths are looked up next to the game file first)")
   .option("--ruffle <dir>", "Ruffle build directory (default: cached one from runtime.json)")
   .option("--asset <file>", "extra asset to include (repeatable)", collect, [])
   .option("--json", "output JSON", false)
