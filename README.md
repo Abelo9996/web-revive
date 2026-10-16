@@ -9,9 +9,11 @@
 [![Node 20+](https://img.shields.io/badge/node-20%2B-339933?logo=nodedotjs&logoColor=white)](package.json)
 [![MCP server](https://img.shields.io/badge/MCP-server-5c4ee5)](#use-it-with-your-agent)
 
-<img src="docs/demo.gif" alt="Math Slash, an open-source ActionScript 2 Flash game, running in the browser through Ruffle, played in headless Chrome during verify" width="420" />
+<a href="https://abelo9996.github.io/web-revive/"><img src="docs/demo.gif" alt="Math Slash, an open-source ActionScript 2 Flash game, running in the browser through Ruffle, played in headless Chrome during verify" width="420" /></a>
 
 <sub>Math Slash, a real open-source ActionScript 2 Flash game (<a href="examples/flash-mathslash">examples/flash-mathslash</a>), revived by web-revive and played in headless Chrome during <code>verify</code>.</sub>
+
+**Play the revived games in your browser: [Math Slash](https://abelo9996.github.io/web-revive/math-slash/) (Flash) · [Reversi](https://abelo9996.github.io/web-revive/reversi/) (Java applet)**
 
 [Try it](#try-it) · [Use it with your agent](#use-it-with-your-agent) · [Real revivals](#real-revivals) · [How it works](#how-it-works) · [Limits](#what-it-cant-do)
 
