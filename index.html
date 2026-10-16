@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>web-revive demos</title>
+<meta name="description" content="Give your agent the power to bring dead Flash and Java web games back to life, so they run in any modern browser again. No Flash Player, no Java plugin: these run on Ruffle and CheerpJ.">
+<meta property="og:title" content="web-revive demos">
+<meta property="og:description" content="Give your agent the power to bring dead Flash and Java web games back to life, so they run in any modern browser again. No Flash Player, no Java plugin: these run on Ruffle and CheerpJ.">
+<meta property="og:image" content="https://abelo9996.github.io/web-revive/mathslash.png">
+<style>
+:root { --bg:#f7f7f5; --fg:#1c1d20; --muted:#5d6068; --card:#fff; --line:#e3e3df; --accent:#2f6fd6; }
+@media (prefers-color-scheme: dark) { :root { --bg:#111317; --fg:#e8e8e6; --muted:#9a9ea8; --card:#1a1d23; --line:#2a2e36; --accent:#79a8f2; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+main { max-width:960px; margin:0 auto; padding:40px 16px 64px; }
+h1 { font-size:2rem; margin:0 0 6px; }
+.lede { font-size:1.15rem; color:var(--muted); margin:0 0 20px; max-width:46em; }
+.cta { display:inline-block; padding:9px 16px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; margin-right:10px; }
+.cta.alt { background:transparent; color:var(--accent); border:1px solid var(--line); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:32px; }
+.card { display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; color:inherit; text-decoration:none; transition:transform .15s; }
+.card:hover { transform:translateY(-2px); }
+.card img { width:100%; aspect-ratio:4/3; object-fit:cover; background:#000; display:block; }
+.body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.body h2 { font-size:1.1rem; margin:0; }
+.body p { margin:0; color:var(--muted); font-size:.95rem; }
+.tag { font-size:.75rem; font-weight:500; color:var(--muted); border:1px solid var(--line); border-radius:99px; padding:1px 8px; margin-left:4px; vertical-align:middle; }
+.meta span { word-break:break-all; }
+.play { margin-top:auto; padding-top:8px; color:var(--accent); font-weight:600; }
+footer { margin-top:40px; color:var(--muted); font-size:.9rem; }
+footer a, .lede a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>web-revive demos</h1>
+  <p class="lede">Give your agent the power to bring dead Flash and Java web games back to life, so they run in any modern browser again. No Flash Player, no Java plugin: these run on Ruffle and CheerpJ.</p>
+  <a class="cta" href="https://github.com/Abelo9996/web-revive">Get it on GitHub</a>
+  <a class="cta alt" href="https://github.com/Abelo9996/web-revive#use-it-with-your-agent">Use it with your agent</a>
+  <div class="grid">
+    <a class="card" href="math-slash/">
+      <img src="mathslash.png" alt="Math Slash screenshot" loading="lazy">
+      <div class="body">
+        <h2>Math Slash <span class="tag">Flash, ActionScript 2</span></h2>
+        <p>An arithmetic slashing game made in Flash. Click Play. Revived from the original .swf with no changes.</p>
+        <p class="meta">Original: <span>github.com/andy-shi88/MathSlash</span> · GPL-3.0</p>
+        <span class="play">Play in your browser</span>
+      </div>
+    </a>
+    <a class="card" href="reversi/">
+      <img src="reversi.png" alt="Reversi screenshot" loading="lazy">
+      <div class="body">
+        <h2>Reversi <span class="tag">Java 1.1 applet</span></h2>
+        <p>Othello against the computer, a Java applet from 2004. Click a square to move. Give it a few seconds to load the Java runtime.</p>
+        <p class="meta">Original: <span>github.com/kwfenske/reversi-game-java</span> · GPL-3.0</p>
+        <span class="play">Play in your browser</span>
+      </div>
+    </a>
+  </div>
+  <footer>
+    <p>Math Slash runs on Ruffle (open source, bundled here). Reversi runs on CheerpJ, which is proprietary software from Leaning Technologies loaded from their servers. Source code for both games is at the links on each card; verification reports are in the repo under examples/.</p>
+    <p>Each demo keeps its original license next to it. If web-revive is useful to you, a star on <a href="https://github.com/Abelo9996/web-revive">GitHub</a> helps other people find it.</p>
+  </footer>
+</main>
+</body>
+</html>

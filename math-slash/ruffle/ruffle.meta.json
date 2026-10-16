@@ -1,0 +1,22 @@
+{
+  "kind": "ruffle",
+  "cached": false,
+  "releaseTag": "nightly-2026-10-13",
+  "assetName": "ruffle-nightly-2026_10_13-web-selfhosted.zip",
+  "assetUrl": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-13/ruffle-nightly-2026_10_13-web-selfhosted.zip",
+  "sha256": "9a8fea298e54c11146ecc3f22eaeea925c0d6cd0089860b1221d8aafa413f804",
+  "cacheDir": "/Users/abelyagubyan/.web-revive/runtimes/ruffle",
+  "files": [
+    "LICENSE_APACHE",
+    "LICENSE_MIT",
+    "README.md",
+    "package.json",
+    "ruffle.js",
+    "ruffle.js.map",
+    "ruffle_web-wasm_mvp_bg.FUJ2FB27.wasm",
+    "ruffle_web_bg.4DUO7HYF.wasm"
+  ],
+  "notes": [
+    "Ruffle is MIT/Apache-2.0 open source. The self-hosted web build above was downloaded from the official GitHub releases."
+  ]
+}
