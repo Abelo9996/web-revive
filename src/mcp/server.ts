@@ -9,6 +9,7 @@ import { packageSite } from "../ops/package.js";
 import { serve } from "../ops/serve.js";
 import { verify } from "../ops/verify.js";
 import { report } from "../ops/report.js";
+import { revive } from "../ops/revive.js";
 import { Workspace } from "../util/evidence.js";
 import type { RuntimeInfo } from "../types.js";
 
@@ -32,7 +33,37 @@ async function save(workspace: string | undefined, name: string, data: unknown):
  * itself never calls a model.
  */
 export function createServer(): McpServer {
-  const server = new McpServer({ name: "web-revive", version: "0.1.0" });
+  const server = new McpServer({ name: "web-revive", version: "0.2.0" });
+
+  server.tool(
+    "revive",
+    "One call: find the game (live or from the Internet Archive), inspect it, fetch Ruffle or CheerpJ, package a static site, verify it in headless Chrome, run an input script to reach gameplay, record a gameplay GIF, and (unless noServe) start a preview server and return the link. Returns an honest blocker if it cannot.",
+    {
+      source: z.string().describe("page URL, direct .swf/.jar URL, local file, or an Internet Archive capture URL"),
+      out: z.string().optional().describe("workspace directory"),
+      title: z.string().optional(),
+      seconds: z.number().default(4),
+      gif: z.boolean().default(true),
+      noServe: z.boolean().default(false),
+    },
+    async (a) => {
+      try {
+        const r = await revive(a.source, {
+          outDir: a.out,
+          title: a.title,
+          observeSeconds: a.seconds,
+          noGif: !a.gif,
+        });
+        if (r.ok && !a.noServe && r.siteDir) {
+          const handle = await serve(r.siteDir);
+          r.url = handle.url;
+        }
+        return json(r);
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
 
   server.tool(
     "find",

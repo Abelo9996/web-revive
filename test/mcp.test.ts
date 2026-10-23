@@ -7,7 +7,7 @@ describe("MCP server", () => {
     // The McpServer keeps registered tools on an internal map; assert they exist.
     const tools = (server as unknown as { _registeredTools: Record<string, unknown> })._registeredTools;
     expect(tools).toBeTruthy();
-    for (const name of ["find", "inspect", "runtime", "package", "serve", "verify", "report"]) {
+    for (const name of ["revive", "find", "inspect", "runtime", "package", "serve", "verify", "report"]) {
       expect(Object.keys(tools)).toContain(name);
     }
   });

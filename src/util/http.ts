@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
  * The User-Agent every request carries, so the Internet Archive and any origin
  * server can see what is contacting them and how to reach the project.
  */
-export const USER_AGENT = "web-revive/0.1.0 (+https://github.com/Abelo9996/web-revive)";
+export const USER_AGENT = "web-revive/0.2.0 (+https://github.com/Abelo9996/web-revive)";
 
 export interface HttpResponse {
   url: string;

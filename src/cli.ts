@@ -10,13 +10,65 @@ import { packageSite, type PackageInput } from "./ops/package.js";
 import { serve } from "./ops/serve.js";
 import { verify } from "./ops/verify.js";
 import { report } from "./ops/report.js";
+import { revive } from "./ops/revive.js";
 import { runSetup } from "./setup/setup.js";
 import { startMcpServer } from "./mcp/server.js";
 import { Workspace } from "./util/evidence.js";
 import type { InspectReport, RuntimeInfo } from "./types.js";
 
 const program = new Command();
-program.name("web-revive").description("Bring dead Flash and Java web games back to life in a modern browser.").version("0.1.0");
+program.name("web-revive").description("Bring dead Flash and Java web games back to life in a modern browser.").version("0.2.0");
+
+program
+  .command("revive")
+  .description("one command: find, inspect, package, and verify a dead Flash or Java game into a playable link and a gameplay GIF, or an honest no")
+  .argument("<source>", "page URL, direct .swf/.jar URL, local file, or an Internet Archive capture URL")
+  .option("--out <dir>", "workspace directory (default .web-revive/<name>)")
+  .option("--seconds <n>", "seconds to observe frames during verify", (v) => parseInt(v, 10), 4)
+  .option("--title <title>", "page and report title")
+  .option("--no-serve", "do not start a preview server; just print the site directory")
+  .option("--no-gif", "do not record a gameplay GIF")
+  .option("--port <port>", "preview server port", (v) => parseInt(v, 10))
+  .option("--json", "output JSON", false)
+  .action(async (source, opts) => {
+    const r = await revive(source, {
+      outDir: opts.out,
+      observeSeconds: opts.seconds,
+      title: opts.title,
+      noGif: !opts.gif,
+      onEvent: opts.json ? undefined : (msg) => console.error(`  ${msg}`),
+    });
+    if (opts.json) {
+      process.stdout.write(JSON.stringify(r, null, 2) + "\n");
+      if (!r.ok) process.exitCode = 1;
+      return;
+    }
+    if (!r.ok) {
+      console.log(`\nCould not revive: ${r.blocker}`);
+      if (r.report) console.log(`Evidence: ${r.report.md}`);
+      process.exitCode = 1;
+      return;
+    }
+    console.log(`\nRevived in ${(r.durationMs / 1000).toFixed(1)}s. ${r.stage === "gameplay" ? "Reached gameplay" : "Boots and animates"}${r.fps != null ? ` at ${r.fps} fps` : ""} in headless Chrome.`);
+    if (r.gifPath) console.log(`Gameplay GIF: ${r.gifPath}`);
+    if (r.offlineLimits.length) {
+      console.log("Will not work offline:");
+      for (const l of r.offlineLimits) console.log(`  - ${l}`);
+    }
+    if (r.report) console.log(`Report: ${r.report.md}`);
+    if (opts.serve && r.siteDir) {
+      const handle = await serve(r.siteDir, { port: opts.port });
+      console.log(`\nPlay it at: ${handle.url}`);
+      console.log("Press Ctrl+C to stop.");
+      process.on("SIGINT", async () => {
+        await handle.close();
+        process.exit(0);
+      });
+    } else if (r.siteDir) {
+      console.log(`\nSite: ${r.siteDir}`);
+      console.log(`Serve it: web-revive serve ${r.siteDir}`);
+    }
+  });
 
 function out(json: boolean, data: unknown, human: () => void): void {
   if (json) process.stdout.write(JSON.stringify(data, null, 2) + "\n");
