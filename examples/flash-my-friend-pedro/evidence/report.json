@@ -1,0 +1,222 @@
+{
+  "title": "My Friend Pedro",
+  "generatedAt": "2026-10-23T09:21:43.735Z",
+  "find": {
+    "source": "https://archive.org/download/flash_games/my_friend_pedro.swf",
+    "pageFetched": false,
+    "pageLive": true,
+    "games": [
+      {
+        "type": "flash",
+        "src": "https://archive.org/download/flash_games/my_friend_pedro.swf",
+        "width": null,
+        "height": null,
+        "evidence": "direct file URL (live)"
+      }
+    ],
+    "pageCaptures": [],
+    "assetCaptures": [],
+    "downloaded": [
+      {
+        "requestedUrl": "https://archive.org/download/flash_games/my_friend_pedro.swf",
+        "path": "<workspace>/game/my_friend_pedro.swf",
+        "bytes": 4084774,
+        "sha256": "824e7411ce4802c3c0e34375161bf19a5efb8af96a507cc47fcb9a0dee6ceaa3",
+        "captureTimestamp": null
+      }
+    ],
+    "requests": [
+      {
+        "url": "https://archive.org/download/flash_games/my_friend_pedro.swf",
+        "note": "direct game file",
+        "status": 200
+      }
+    ],
+    "notes": []
+  },
+  "inspect": {
+    "source": "<workspace>/game/my_friend_pedro.swf",
+    "path": "<workspace>/game/my_friend_pedro.swf",
+    "kind": "flash",
+    "swf": {
+      "signature": "CWS",
+      "compression": "zlib",
+      "version": 15,
+      "fileLength": 4809267,
+      "stage": {
+        "widthPx": 600,
+        "heightPx": 400
+      },
+      "frameRate": 32,
+      "frameCount": 24,
+      "actionScript": "AS1/AS2",
+      "actionScriptEvidence": "DoAction tag present, no DoABC",
+      "externalRefs": [
+        "You can create an API ID for this submission at http://newgrounds.com/account/flashapi",
+        "http://www.deadtoast.com/dtads/mfp/",
+        "dtads_policy.xml",
+        "http://www.y8.com",
+        "http://www.deadtoast.com",
+        "http://www.y8.com/games/my_friend_pedro",
+        "http://www.ngads.com/gateway_v2.php",
+        "getURL",
+        "LoadVars",
+        "sendAndLoad",
+        "http://apifiles.ngfiles.com/crossdomain.xml",
+        "SharedObject",
+        "http://www.ngads.com/adtest.php",
+        "https://www.newgrounds.com/login/remote/",
+        "http://server.cpmstar.com/adviewas2.swf?poolid=",
+        "loadMovie",
+        "https://www.facebook.com/DeadtoastCom",
+        "https://twitter.com/deadtoast_com",
+        "http://games.adultswim.com",
+        "https://www.id.net/swf/idnet-client-as2.swc?=",
+        "http://ns.adobe.com/xap/1.0/",
+        "\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?> <x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.0-c061 64.140949, 2010/1...",
+        "IEC http://www.iec.ch",
+        "\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?> <x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.3-c011 66.145661, 2012/0...",
+        "http://www.id.net",
+        "http://www.y8.com/games/my_friend_pedro_arena",
+        "http://www.thelivingtombstone.com"
+      ],
+      "bodyParsed": true
+    },
+    "java": null,
+    "runtime": "ruffle",
+    "compatibility": "may-have-problems",
+    "findings": [
+      {
+        "what": "ActionScript 1/2 movie",
+        "reason": "Ruffle's AS1/AS2 support is substantially more complete than its AS3 support, so this is the stronger case.",
+        "severity": "ok"
+      },
+      {
+        "what": "Loads external files",
+        "reason": "The movie pulls in other files at runtime (other SWFs, XML, or server calls). Those must be present too, or captured from the archive.",
+        "severity": "warn"
+      }
+    ],
+    "notes": []
+  },
+  "runtime": {
+    "kind": "ruffle",
+    "cached": true,
+    "releaseTag": "nightly-2026-10-13",
+    "assetName": "ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "assetUrl": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-13/ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "sha256": "9a8fea298e54c11146ecc3f22eaeea925c0d6cd0089860b1221d8aafa413f804",
+    "cacheDir": "~/.web-revive/runtimes/ruffle",
+    "files": [
+      "LICENSE_APACHE",
+      "LICENSE_MIT",
+      "README.md",
+      "package.json",
+      "ruffle.js",
+      "ruffle.js.map",
+      "ruffle_web-wasm_mvp_bg.FUJ2FB27.wasm",
+      "ruffle_web_bg.4DUO7HYF.wasm"
+    ],
+    "notes": [
+      "Ruffle is MIT/Apache-2.0 open source. The self-hosted web build above was downloaded from the official GitHub releases.",
+      "Using the cached Ruffle build. Pass force to re-download."
+    ]
+  },
+  "package": {
+    "siteDir": "<workspace>/site",
+    "indexHtml": "<workspace>/site/index.html",
+    "files": [
+      "index.html",
+      "my_friend_pedro.swf",
+      "ruffle"
+    ],
+    "kind": "flash",
+    "runtime": "ruffle",
+    "stage": {
+      "width": 600,
+      "height": 400
+    }
+  },
+  "verify": {
+    "ok": false,
+    "kind": "flash",
+    "runtime": "ruffle",
+    "started": true,
+    "consoleErrors": [
+      "Access to fetch at 'http://www.deadtoast.com/dtads/mfp/dtads.txt' from origin 'http://127.0.0.1:49324' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "runtimeWarnings": [],
+    "canvasNonBlank": true,
+    "canvasChanged": false,
+    "frames": 392,
+    "fps": 60,
+    "durationMs": 6530,
+    "interactions": [
+      {
+        "kind": "click",
+        "detail": "#wr-stage (focus)"
+      },
+      {
+        "kind": "click",
+        "detail": "center (300,200)"
+      },
+      {
+        "kind": "click",
+        "detail": "play-area (300,248)"
+      },
+      {
+        "kind": "click",
+        "detail": "lower-menu (300,312)"
+      },
+      {
+        "kind": "key",
+        "detail": "Enter"
+      },
+      {
+        "kind": "key",
+        "detail": "Space"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowRight"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowUp"
+      }
+    ],
+    "metadata": {
+      "width": 600,
+      "height": 400,
+      "frameRate": 32,
+      "numFrames": 24,
+      "swfVersion": 15,
+      "backgroundColor": "#000000",
+      "isActionScript3": false,
+      "uncompressedLength": 4809267
+    },
+    "screenshots": [
+      "<workspace>/evidence/screenshots/start.png",
+      "<workspace>/evidence/screenshots/end.png"
+    ],
+    "notes": [
+      "Gameplay judgment: boots only (idle 0, post-input 0). The stage stayed static after input; still on the title screen or not responding to generic input.",
+      "Recorded gameplay GIF (30 frames, 17 KB)."
+    ],
+    "warnings": [],
+    "gameplay": {
+      "reached": false,
+      "reason": "The stage stayed static after input; still on the title screen or not responding to generic input.",
+      "idleActivity": 0,
+      "postInputActivity": 0
+    },
+    "gifPath": "<workspace>/evidence/screenshots/gameplay.gif"
+  },
+  "limits": [
+    "Score saving, logins, or leaderboards that called a server will not work offline.",
+    "Extra levels or content loaded from other SWF files must be captured too, or those parts will be missing.",
+    "Data loaded from XML files at runtime must be present alongside the game, or that content will be missing."
+  ],
+  "commands": []
+}

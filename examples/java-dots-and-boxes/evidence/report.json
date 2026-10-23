@@ -1,0 +1,175 @@
+{
+  "title": "Dots and Boxes",
+  "generatedAt": "2026-10-23T09:22:26.333Z",
+  "find": {
+    "source": "https://github.com/kwfenske/dots-and-boxes-game-java/raw/main/dotbox2b.jar",
+    "pageFetched": false,
+    "pageLive": true,
+    "games": [
+      {
+        "type": "java",
+        "src": "https://github.com/kwfenske/dots-and-boxes-game-java/raw/main/dotbox2b.jar",
+        "width": null,
+        "height": null,
+        "evidence": "direct file URL (live)"
+      }
+    ],
+    "pageCaptures": [],
+    "assetCaptures": [],
+    "downloaded": [
+      {
+        "requestedUrl": "https://github.com/kwfenske/dots-and-boxes-game-java/raw/main/dotbox2b.jar",
+        "path": "<workspace>/game/dotbox2b.jar",
+        "bytes": 10485,
+        "sha256": "0738458fc234521bf4082ba93190f82717eacbe44129ca7d1bfffee76ffe5e7d",
+        "captureTimestamp": null
+      }
+    ],
+    "requests": [
+      {
+        "url": "https://github.com/kwfenske/dots-and-boxes-game-java/raw/main/dotbox2b.jar",
+        "note": "direct game file",
+        "status": 200
+      }
+    ],
+    "notes": []
+  },
+  "inspect": {
+    "source": "<workspace>/game/dotbox2b.jar",
+    "path": "<workspace>/game/dotbox2b.jar",
+    "kind": "java",
+    "swf": null,
+    "java": {
+      "manifest": {
+        "Manifest-Version": "1.0",
+        "Created-By": "1.4.2_19 (Sun Microsystems Inc.)",
+        "Main-Class": "DotsAndBoxes2"
+      },
+      "mainClass": "DotsAndBoxes2",
+      "appletClasses": [
+        "DotsAndBoxes2"
+      ],
+      "entryClasses": [
+        "DotsAndBoxes2"
+      ],
+      "classCount": 3,
+      "maxMajor": 45,
+      "javaVersion": "Java 1.1 (class major 45)",
+      "usesNetworking": false,
+      "usesFileAccess": false,
+      "usesNativeLibs": false,
+      "nativeLibEntries": [],
+      "evidence": [
+        "applet classes: DotsAndBoxes2",
+        "manifest Main-Class: DotsAndBoxes2"
+      ]
+    },
+    "runtime": "cheerpj",
+    "compatibility": "likely",
+    "findings": [
+      {
+        "what": "Java applet",
+        "reason": "Extends Applet/JApplet. CheerpJ runs applets through its <applet> tag support on Java 8.",
+        "severity": "ok"
+      }
+    ],
+    "notes": [
+      "CheerpJ is proprietary software from Leaning Technologies, loaded at runtime from its CDN. Free for personal use; check its license for commercial use."
+    ]
+  },
+  "runtime": {
+    "kind": "cheerpj",
+    "cached": true,
+    "loaderUrl": "https://cjrtnc.leaningtech.com/4.3/loader.js",
+    "version": "4.3",
+    "proprietary": true,
+    "licenseNote": "CheerpJ is proprietary software from Leaning Technologies. Free for personal use; check its license for commercial use. The page loads it from Leaning Technologies' servers at runtime.",
+    "notes": [
+      "CheerpJ is not downloaded or bundled. The packaged page references the CDN loader above."
+    ]
+  },
+  "package": {
+    "siteDir": "<workspace>/site",
+    "indexHtml": "<workspace>/site/index.html",
+    "files": [
+      "dotbox2b.jar",
+      "index.html"
+    ],
+    "kind": "java",
+    "runtime": "cheerpj",
+    "stage": {
+      "width": 800,
+      "height": 600
+    }
+  },
+  "verify": {
+    "ok": true,
+    "kind": "java",
+    "runtime": "cheerpj",
+    "started": true,
+    "consoleErrors": [],
+    "runtimeWarnings": [],
+    "canvasNonBlank": true,
+    "canvasChanged": true,
+    "frames": 36,
+    "fps": 5.1,
+    "durationMs": 7105,
+    "interactions": [
+      {
+        "kind": "click",
+        "detail": "#wr-stage (focus)"
+      },
+      {
+        "kind": "click",
+        "detail": "center (400,300)"
+      },
+      {
+        "kind": "click",
+        "detail": "play-area (400,372)"
+      },
+      {
+        "kind": "click",
+        "detail": "lower-menu (400,468)"
+      },
+      {
+        "kind": "key",
+        "detail": "Enter"
+      },
+      {
+        "kind": "key",
+        "detail": "Space"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowRight"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowUp"
+      }
+    ],
+    "metadata": {
+      "canvasWidth": 800,
+      "canvasHeight": 600
+    },
+    "screenshots": [
+      "<workspace>/evidence/screenshots/start.png",
+      "<workspace>/evidence/screenshots/end.png"
+    ],
+    "notes": [
+      "Gameplay judgment: boots only (idle 0.1994, post-input 0.0005). The stage stayed static after input; still on the title screen or not responding to generic input.",
+      "Recorded gameplay GIF (30 frames, 21 KB).",
+      "Stage content changed across the observation window."
+    ],
+    "warnings": [],
+    "gameplay": {
+      "reached": false,
+      "reason": "The stage stayed static after input; still on the title screen or not responding to generic input.",
+      "idleActivity": 0.1994,
+      "postInputActivity": 0.0005
+    },
+    "gifPath": "<workspace>/evidence/screenshots/gameplay.gif"
+  },
+  "limits": [],
+  "commands": []
+}

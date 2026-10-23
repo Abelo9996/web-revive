@@ -1,0 +1,194 @@
+{
+  "title": "QWOP",
+  "generatedAt": "2026-10-23T09:21:17.027Z",
+  "find": {
+    "source": "https://archive.org/download/flash_games/qwop.swf",
+    "pageFetched": false,
+    "pageLive": true,
+    "games": [
+      {
+        "type": "flash",
+        "src": "https://archive.org/download/flash_games/qwop.swf",
+        "width": null,
+        "height": null,
+        "evidence": "direct file URL (live)"
+      }
+    ],
+    "pageCaptures": [],
+    "assetCaptures": [],
+    "downloaded": [
+      {
+        "requestedUrl": "https://archive.org/download/flash_games/qwop.swf",
+        "path": "<workspace>/game/qwop.swf",
+        "bytes": 137929,
+        "sha256": "9fa3d3c459500b73cd148759579036cfc03a681c79b89c65a2bda9aaca93670e",
+        "captureTimestamp": null
+      }
+    ],
+    "requests": [
+      {
+        "url": "https://archive.org/download/flash_games/qwop.swf",
+        "note": "direct game file",
+        "status": 200
+      }
+    ],
+    "notes": []
+  },
+  "inspect": {
+    "source": "<workspace>/game/qwop.swf",
+    "path": "<workspace>/game/qwop.swf",
+    "kind": "flash",
+    "swf": {
+      "signature": "CWS",
+      "compression": "zlib",
+      "version": 9,
+      "fileLength": 243455,
+      "stage": {
+        "widthPx": 640,
+        "heightPx": 400
+      },
+      "frameRate": 30,
+      "frameCount": 1,
+      "actionScript": "AS3",
+      "actionScriptEvidence": "FileAttributes ActionScript3 bit set; DoABC tag present; SymbolClass tag present",
+      "externalRefs": [
+        "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:dc=\"http://purl.org...",
+        "clear!http://adobe.com/AS3/2006/builtin",
+        "flash.net"
+      ],
+      "bodyParsed": true
+    },
+    "java": null,
+    "runtime": "ruffle",
+    "compatibility": "may-have-problems",
+    "findings": [
+      {
+        "what": "ActionScript 3 movie",
+        "reason": "Ruffle's AS3 support is partial. Many AS3 movies run, but some features are unimplemented. Confirm with verify.",
+        "severity": "warn"
+      },
+      {
+        "what": "Loads external files",
+        "reason": "The movie pulls in other files at runtime (other SWFs, XML, or server calls). Those must be present too, or captured from the archive.",
+        "severity": "warn"
+      }
+    ],
+    "notes": []
+  },
+  "runtime": {
+    "kind": "ruffle",
+    "cached": true,
+    "releaseTag": "nightly-2026-10-13",
+    "assetName": "ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "assetUrl": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-13/ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "sha256": "9a8fea298e54c11146ecc3f22eaeea925c0d6cd0089860b1221d8aafa413f804",
+    "cacheDir": "~/.web-revive/runtimes/ruffle",
+    "files": [
+      "LICENSE_APACHE",
+      "LICENSE_MIT",
+      "README.md",
+      "package.json",
+      "ruffle.js",
+      "ruffle.js.map",
+      "ruffle_web-wasm_mvp_bg.FUJ2FB27.wasm",
+      "ruffle_web_bg.4DUO7HYF.wasm"
+    ],
+    "notes": [
+      "Ruffle is MIT/Apache-2.0 open source. The self-hosted web build above was downloaded from the official GitHub releases.",
+      "Using the cached Ruffle build. Pass force to re-download."
+    ]
+  },
+  "package": {
+    "siteDir": "<workspace>/site",
+    "indexHtml": "<workspace>/site/index.html",
+    "files": [
+      "index.html",
+      "qwop.swf",
+      "ruffle"
+    ],
+    "kind": "flash",
+    "runtime": "ruffle",
+    "stage": {
+      "width": 640,
+      "height": 400
+    }
+  },
+  "verify": {
+    "ok": true,
+    "kind": "flash",
+    "runtime": "ruffle",
+    "started": true,
+    "consoleErrors": [],
+    "runtimeWarnings": [],
+    "canvasNonBlank": true,
+    "canvasChanged": true,
+    "frames": 428,
+    "fps": 59.5,
+    "durationMs": 7196,
+    "interactions": [
+      {
+        "kind": "click",
+        "detail": "#wr-stage (focus)"
+      },
+      {
+        "kind": "click",
+        "detail": "center (320,200)"
+      },
+      {
+        "kind": "click",
+        "detail": "play-area (320,248)"
+      },
+      {
+        "kind": "click",
+        "detail": "lower-menu (320,312)"
+      },
+      {
+        "kind": "key",
+        "detail": "Enter"
+      },
+      {
+        "kind": "key",
+        "detail": "Space"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowRight"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowUp"
+      }
+    ],
+    "metadata": {
+      "width": 640,
+      "height": 400,
+      "frameRate": 30,
+      "numFrames": 1,
+      "swfVersion": 9,
+      "backgroundColor": "#3F1111",
+      "isActionScript3": true,
+      "uncompressedLength": 243455
+    },
+    "screenshots": [
+      "<workspace>/evidence/screenshots/start.png",
+      "<workspace>/evidence/screenshots/end.png"
+    ],
+    "notes": [
+      "Gameplay judgment: reached gameplay (idle 0, post-input 0.0228). Sustained stage change after input, clearly above the idle title animation.",
+      "Recorded gameplay GIF (30 frames, 143 KB).",
+      "Stage content changed across the observation window."
+    ],
+    "warnings": [],
+    "gameplay": {
+      "reached": true,
+      "reason": "Sustained stage change after input, clearly above the idle title animation.",
+      "idleActivity": 0,
+      "postInputActivity": 0.0228
+    },
+    "gifPath": "<workspace>/evidence/screenshots/gameplay.gif"
+  },
+  "limits": [
+    "Score saving, logins, or leaderboards that called a server will not work offline."
+  ],
+  "commands": []
+}

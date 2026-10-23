@@ -1,0 +1,494 @@
+{
+  "title": "Flash Element TD",
+  "generatedAt": "2026-10-23T09:22:12.953Z",
+  "find": {
+    "source": "http://www.novelconcepts.co.uk/flashelementtd/",
+    "pageFetched": true,
+    "pageLive": false,
+    "games": [
+      {
+        "type": "flash",
+        "src": "http://novelconcepts.co.uk/flashelementtd/Protected_FlashElementTDv2007-02-01.swf",
+        "width": 650,
+        "height": 450,
+        "flashvars": {},
+        "evidence": "<object> with Flash movie param"
+      },
+      {
+        "type": "flash",
+        "src": "http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf",
+        "width": 650,
+        "height": 450,
+        "flashvars": {},
+        "evidence": "<embed> Flash tag"
+      }
+    ],
+    "pageCaptures": [
+      {
+        "timestamp": "20070111051417",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "WHY4J5FDVGVMKO3PZZHLQXCKEL42PQEJ",
+        "length": "2850",
+        "rawUrl": "https://web.archive.org/web/20070111051417id_/http://novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070117103929",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "347",
+        "rawUrl": "https://web.archive.org/web/20070117103929id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070117103929",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "YCRHUQ3K6QTFRJ7SW3ZU5AQZT2JOEWKG",
+        "length": "4750",
+        "rawUrl": "https://web.archive.org/web/20070117103929id_/http://novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070202011121",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTd/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2935",
+        "rawUrl": "https://web.archive.org/web/20070202011121id_/http://novelconcepts.co.uk:80/FlashElementTd/"
+      },
+      {
+        "timestamp": "20070203154852",
+        "originalUrl": "http://www.novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PFA7OW7X7MPCF3JUJNSY5H6NTDWHP2BT",
+        "length": "351",
+        "rawUrl": "https://web.archive.org/web/20070203154852id_/http://www.novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070203154852",
+        "originalUrl": "http://www.novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2939",
+        "rawUrl": "https://web.archive.org/web/20070203154852id_/http://www.novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070205050734",
+        "originalUrl": "http://www.novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PFA7OW7X7MPCF3JUJNSY5H6NTDWHP2BT",
+        "length": "349",
+        "rawUrl": "https://web.archive.org/web/20070205050734id_/http://www.novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070205050734",
+        "originalUrl": "http://www.novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2934",
+        "rawUrl": "https://web.archive.org/web/20070205050734id_/http://www.novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070212162841",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "346",
+        "rawUrl": "https://web.archive.org/web/20070212162841id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070217171003",
+        "originalUrl": "http://novelconcepts.co.uk:80/flashelementtd/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2936",
+        "rawUrl": "https://web.archive.org/web/20070217171003id_/http://novelconcepts.co.uk:80/flashelementtd/"
+      },
+      {
+        "timestamp": "20070220122801",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "346",
+        "rawUrl": "https://web.archive.org/web/20070220122801id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070220123228",
+        "originalUrl": "http://novelconcepts.co.uk:80/flashelementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2937",
+        "rawUrl": "https://web.archive.org/web/20070220123228id_/http://novelconcepts.co.uk:80/flashelementTD/"
+      },
+      {
+        "timestamp": "20070227232935",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "347",
+        "rawUrl": "https://web.archive.org/web/20070227232935id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070228174418",
+        "originalUrl": "http://novelconcepts.co.uk:80/flashelementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "HDK3Q5RTMPP527SAGUEMUCSIS2NYPXLX",
+        "length": "2936",
+        "rawUrl": "https://web.archive.org/web/20070228174418id_/http://novelconcepts.co.uk:80/flashelementTD/"
+      },
+      {
+        "timestamp": "20070306045838",
+        "originalUrl": "http://novelconcepts.co.uk:80/flashelementtd/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "SJDSPF2PV6TGNINNCNHWOZE4DGP3UYU5",
+        "length": "2930",
+        "rawUrl": "https://web.archive.org/web/20070306045838id_/http://novelconcepts.co.uk:80/flashelementtd/"
+      },
+      {
+        "timestamp": "20070312024016",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "346",
+        "rawUrl": "https://web.archive.org/web/20070312024016id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070312024016",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "SJDSPF2PV6TGNINNCNHWOZE4DGP3UYU5",
+        "length": "2925",
+        "rawUrl": "https://web.archive.org/web/20070312024016id_/http://novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070320071421",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "6GM5KRUT7OKBDJ6G6LMTW6CPFRNBVMJT",
+        "length": "2946",
+        "rawUrl": "https://web.archive.org/web/20070320071421id_/http://novelconcepts.co.uk:80/FlashElementTD/"
+      },
+      {
+        "timestamp": "20070320123840",
+        "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD",
+        "mimetype": "text/html",
+        "statusCode": "301",
+        "digest": "PG7GYVVH7ACVXG2SAILYMUO2IR3VH5X6",
+        "length": "347",
+        "rawUrl": "https://web.archive.org/web/20070320123840id_/http://novelconcepts.co.uk:80/FlashElementTD"
+      },
+      {
+        "timestamp": "20070323002629",
+        "originalUrl": "http://novelconcepts.co.uk:80/flashelementtd/",
+        "mimetype": "text/html",
+        "statusCode": "200",
+        "digest": "6GM5KRUT7OKBDJ6G6LMTW6CPFRNBVMJT",
+        "length": "2952",
+        "rawUrl": "https://web.archive.org/web/20070323002629id_/http://novelconcepts.co.uk:80/flashelementtd/"
+      }
+    ],
+    "assetCaptures": [
+      {
+        "requested": "http://novelconcepts.co.uk/flashelementtd/Protected_FlashElementTDv2007-02-01.swf",
+        "captures": [
+          {
+            "timestamp": "20070203194431",
+            "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf",
+            "mimetype": "application/x-shockwave-flash",
+            "statusCode": "200",
+            "digest": "GMP4UECLMTVXRW7WCFQ4SUTKBBABDJGS",
+            "length": "181788",
+            "rawUrl": "https://web.archive.org/web/20070203194431id_/http://novelconcepts.co.uk:80/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf"
+          },
+          {
+            "timestamp": "20080723112315",
+            "originalUrl": "http://www.novelconcepts.co.uk/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf",
+            "mimetype": "text/html",
+            "statusCode": "200",
+            "digest": "BI7EWDTKQ73VS65JSHXLZYKKXLFVLLAW",
+            "length": "1628",
+            "rawUrl": "https://web.archive.org/web/20080723112315id_/http://www.novelconcepts.co.uk/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf"
+          },
+          {
+            "timestamp": "20220412010205",
+            "originalUrl": "http://novelconcepts.co.uk/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf",
+            "mimetype": "text/html",
+            "statusCode": "302",
+            "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ",
+            "length": "300",
+            "rawUrl": "https://web.archive.org/web/20220412010205id_/http://novelconcepts.co.uk/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf"
+          }
+        ]
+      },
+      {
+        "requested": "http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf",
+        "captures": [
+          {
+            "timestamp": "20070203171940",
+            "originalUrl": "http://novelconcepts.co.uk:80/FlashElementTD/FlashElementTD.swf",
+            "mimetype": "application/x-shockwave-flash",
+            "statusCode": "200",
+            "digest": "JB6CSEZDLDNRX7DRV6DJNRJJVV5DCVLX",
+            "length": "181769",
+            "rawUrl": "https://web.archive.org/web/20070203171940id_/http://novelconcepts.co.uk:80/FlashElementTD/FlashElementTD.swf"
+          },
+          {
+            "timestamp": "20100424184759",
+            "originalUrl": "http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf",
+            "mimetype": "text/html",
+            "statusCode": "400",
+            "digest": "KIAEUIRBQ6O6J22EYZKH4SA44SF2C4XN",
+            "length": "389",
+            "rawUrl": "https://web.archive.org/web/20100424184759id_/http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf"
+          },
+          {
+            "timestamp": "20150413155554",
+            "originalUrl": "http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf",
+            "mimetype": "unk",
+            "statusCode": "302",
+            "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ",
+            "length": "444",
+            "rawUrl": "https://web.archive.org/web/20150413155554id_/http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf"
+          }
+        ]
+      }
+    ],
+    "downloaded": [
+      {
+        "requestedUrl": "http://novelconcepts.co.uk/flashelementtd/Protected_FlashElementTDv2007-02-01.swf",
+        "path": "<workspace>/game/Protected_FlashElementTDv2007-02-01.swf",
+        "bytes": 3112,
+        "sha256": "3f580c13fb6372f023eb73dcffadc9725a70dc2137ed996e516af6a2a1baafaa",
+        "captureTimestamp": "20080723112315"
+      },
+      {
+        "requestedUrl": "http://novelconcepts.co.uk/FlashElementTD/FlashElementTD.swf",
+        "path": "<workspace>/game/FlashElementTD.swf",
+        "bytes": 181320,
+        "sha256": "b04e6cb4ff483900cd1acf8a51d47c6ee4ea13a6cc8538e994a2dad58cb479e0",
+        "captureTimestamp": "20070203171940"
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://www.novelconcepts.co.uk/flashelementtd/",
+        "note": "page (error: fetch failed)",
+        "status": null
+      },
+      {
+        "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.novelconcepts.co.uk%2Fflashelementtd%2F&output=json&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest%2Clength&collapse=digest&limit=20",
+        "note": "wayback CDX",
+        "status": 200
+      },
+      {
+        "url": "https://web.archive.org/web/20070323002629id_/http://novelconcepts.co.uk:80/flashelementtd/",
+        "note": "archived page",
+        "status": 200
+      },
+      {
+        "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fnovelconcepts.co.uk%2Fflashelementtd%2FProtected_FlashElementTDv2007-02-01.swf&output=json&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest%2Clength&collapse=digest&limit=20",
+        "note": "wayback CDX",
+        "status": 200
+      },
+      {
+        "url": "https://web.archive.org/web/20080723112315id_/http://www.novelconcepts.co.uk/FlashElementTD/Protected_FlashElementTDv2007-02-01.swf",
+        "note": "archived game file",
+        "status": 200
+      },
+      {
+        "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fnovelconcepts.co.uk%2FFlashElementTD%2FFlashElementTD.swf&output=json&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest%2Clength&collapse=digest&limit=20",
+        "note": "wayback CDX",
+        "status": 200
+      },
+      {
+        "url": "https://web.archive.org/web/20070203171940id_/http://novelconcepts.co.uk:80/FlashElementTD/FlashElementTD.swf",
+        "note": "archived game file",
+        "status": 200
+      }
+    ],
+    "notes": [
+      "Page did not load; looking in the Internet Archive.",
+      "Using page capture from 20070323002629."
+    ]
+  },
+  "inspect": {
+    "source": "<workspace>/game/FlashElementTD.swf",
+    "path": "<workspace>/game/FlashElementTD.swf",
+    "kind": "flash",
+    "swf": {
+      "signature": "CWS",
+      "compression": "zlib",
+      "version": 8,
+      "fileLength": 287591,
+      "stage": {
+        "widthPx": 650,
+        "heightPx": 450
+      },
+      "frameRate": 40,
+      "frameCount": 10,
+      "actionScript": "AS1/AS2",
+      "actionScriptEvidence": "DoAction tag present, no DoABC",
+      "externalRefs": [
+        "http://",
+        "/my/core.swf?mv=7&fv=",
+        "loadMovie",
+        "http://x.mochiads.com/srv/1/",
+        ".swf",
+        "http://novelconcepts.co.uk/FlashElementTD/submitScore.asp?score="
+      ],
+      "bodyParsed": true
+    },
+    "java": null,
+    "runtime": "ruffle",
+    "compatibility": "may-have-problems",
+    "findings": [
+      {
+        "what": "ActionScript 1/2 movie",
+        "reason": "Ruffle's AS1/AS2 support is substantially more complete than its AS3 support, so this is the stronger case.",
+        "severity": "ok"
+      },
+      {
+        "what": "Loads external files",
+        "reason": "The movie pulls in other files at runtime (other SWFs, XML, or server calls). Those must be present too, or captured from the archive.",
+        "severity": "warn"
+      }
+    ],
+    "notes": []
+  },
+  "runtime": {
+    "kind": "ruffle",
+    "cached": true,
+    "releaseTag": "nightly-2026-10-13",
+    "assetName": "ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "assetUrl": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-13/ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "sha256": "9a8fea298e54c11146ecc3f22eaeea925c0d6cd0089860b1221d8aafa413f804",
+    "cacheDir": "~/.web-revive/runtimes/ruffle",
+    "files": [
+      "LICENSE_APACHE",
+      "LICENSE_MIT",
+      "README.md",
+      "package.json",
+      "ruffle.js",
+      "ruffle.js.map",
+      "ruffle_web-wasm_mvp_bg.FUJ2FB27.wasm",
+      "ruffle_web_bg.4DUO7HYF.wasm"
+    ],
+    "notes": [
+      "Ruffle is MIT/Apache-2.0 open source. The self-hosted web build above was downloaded from the official GitHub releases.",
+      "Using the cached Ruffle build. Pass force to re-download."
+    ]
+  },
+  "package": {
+    "siteDir": "<workspace>/site",
+    "indexHtml": "<workspace>/site/index.html",
+    "files": [
+      "FlashElementTD.swf",
+      "index.html",
+      "ruffle"
+    ],
+    "kind": "flash",
+    "runtime": "ruffle",
+    "stage": {
+      "width": 650,
+      "height": 450
+    }
+  },
+  "verify": {
+    "ok": false,
+    "kind": "flash",
+    "runtime": "ruffle",
+    "started": true,
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    ],
+    "runtimeWarnings": [],
+    "canvasNonBlank": true,
+    "canvasChanged": true,
+    "frames": 489,
+    "fps": 55.1,
+    "durationMs": 8875,
+    "interactions": [
+      {
+        "kind": "click",
+        "detail": "#wr-stage (focus)"
+      },
+      {
+        "kind": "click",
+        "detail": "center (325,225)"
+      },
+      {
+        "kind": "click",
+        "detail": "play-area (325,279)"
+      },
+      {
+        "kind": "click",
+        "detail": "lower-menu (325,351)"
+      },
+      {
+        "kind": "key",
+        "detail": "Enter"
+      },
+      {
+        "kind": "key",
+        "detail": "Space"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowRight"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowUp"
+      }
+    ],
+    "metadata": {
+      "width": 650,
+      "height": 450,
+      "frameRate": 40,
+      "numFrames": 10,
+      "swfVersion": 8,
+      "isActionScript3": false,
+      "uncompressedLength": 287591
+    },
+    "screenshots": [
+      "<workspace>/evidence/screenshots/start.png",
+      "<workspace>/evidence/screenshots/end.png"
+    ],
+    "notes": [
+      "Gameplay judgment: reached gameplay (idle 0.0004, post-input 0.0358). Sustained stage change after input, clearly above the idle title animation.",
+      "Recorded gameplay GIF (30 frames, 60 KB).",
+      "Stage content changed across the observation window."
+    ],
+    "warnings": [],
+    "gameplay": {
+      "reached": true,
+      "reason": "Sustained stage change after input, clearly above the idle title animation.",
+      "idleActivity": 0.0004,
+      "postInputActivity": 0.0358
+    },
+    "gifPath": "<workspace>/evidence/screenshots/gameplay.gif"
+  },
+  "limits": [
+    "Score saving, logins, or leaderboards that called a server will not work offline.",
+    "Extra levels or content loaded from other SWF files must be captured too, or those parts will be missing."
+  ],
+  "commands": []
+}

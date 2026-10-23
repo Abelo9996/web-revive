@@ -1,0 +1,201 @@
+{
+  "title": "Interactive Buddy",
+  "generatedAt": "2026-10-23T09:21:32.288Z",
+  "find": {
+    "source": "https://archive.org/download/flash_games/interactive_buddy.swf",
+    "pageFetched": false,
+    "pageLive": true,
+    "games": [
+      {
+        "type": "flash",
+        "src": "https://archive.org/download/flash_games/interactive_buddy.swf",
+        "width": null,
+        "height": null,
+        "evidence": "direct file URL (live)"
+      }
+    ],
+    "pageCaptures": [],
+    "assetCaptures": [],
+    "downloaded": [
+      {
+        "requestedUrl": "https://archive.org/download/flash_games/interactive_buddy.swf",
+        "path": "<workspace>/game/interactive_buddy.swf",
+        "bytes": 1517761,
+        "sha256": "76da8a05bfe3472afe4a2bca2c09486b5be614881d45621489fa2f2686d16b0f",
+        "captureTimestamp": null
+      }
+    ],
+    "requests": [
+      {
+        "url": "https://archive.org/download/flash_games/interactive_buddy.swf",
+        "note": "direct game file",
+        "status": 200
+      }
+    ],
+    "notes": []
+  },
+  "inspect": {
+    "source": "<workspace>/game/interactive_buddy.swf",
+    "path": "<workspace>/game/interactive_buddy.swf",
+    "kind": "flash",
+    "swf": {
+      "signature": "FWS",
+      "compression": "none",
+      "version": 7,
+      "fileLength": 1517761,
+      "stage": {
+        "widthPx": 550,
+        "heightPx": 400
+      },
+      "frameRate": 40,
+      "frameCount": 42,
+      "actionScript": "AS1/AS2",
+      "actionScriptEvidence": "DoAction tag present, no DoABC",
+      "externalRefs": [
+        "<FONT COLOR=\"#0000FF\"><U><A HREF=\"http://shock-value.deviantart.com\">shock-value.deviantart.com</A></U></FONT></P>",
+        "unloadMovie",
+        "loadMovie",
+        "http://shock-value.t35.com/mailsv.php",
+        "sendAndLoad",
+        "SharedObject",
+        "initSharedObject",
+        "LoadVars",
+        "<p align=\"center\"><font face=\"Arial_16pt_st\" size=\"16\" color=\"#000000\"><b>Are you a member of</b></font></p><p align=\"ce..."
+      ],
+      "bodyParsed": true
+    },
+    "java": null,
+    "runtime": "ruffle",
+    "compatibility": "may-have-problems",
+    "findings": [
+      {
+        "what": "ActionScript 1/2 movie",
+        "reason": "Ruffle's AS1/AS2 support is substantially more complete than its AS3 support, so this is the stronger case.",
+        "severity": "ok"
+      },
+      {
+        "what": "Loads external files",
+        "reason": "The movie pulls in other files at runtime (other SWFs, XML, or server calls). Those must be present too, or captured from the archive.",
+        "severity": "warn"
+      }
+    ],
+    "notes": []
+  },
+  "runtime": {
+    "kind": "ruffle",
+    "cached": true,
+    "releaseTag": "nightly-2026-10-13",
+    "assetName": "ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "assetUrl": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-13/ruffle-nightly-2026_10_13-web-selfhosted.zip",
+    "sha256": "9a8fea298e54c11146ecc3f22eaeea925c0d6cd0089860b1221d8aafa413f804",
+    "cacheDir": "~/.web-revive/runtimes/ruffle",
+    "files": [
+      "LICENSE_APACHE",
+      "LICENSE_MIT",
+      "README.md",
+      "package.json",
+      "ruffle.js",
+      "ruffle.js.map",
+      "ruffle_web-wasm_mvp_bg.FUJ2FB27.wasm",
+      "ruffle_web_bg.4DUO7HYF.wasm"
+    ],
+    "notes": [
+      "Ruffle is MIT/Apache-2.0 open source. The self-hosted web build above was downloaded from the official GitHub releases.",
+      "Using the cached Ruffle build. Pass force to re-download."
+    ]
+  },
+  "package": {
+    "siteDir": "<workspace>/site",
+    "indexHtml": "<workspace>/site/index.html",
+    "files": [
+      "index.html",
+      "interactive_buddy.swf",
+      "ruffle"
+    ],
+    "kind": "flash",
+    "runtime": "ruffle",
+    "stage": {
+      "width": 550,
+      "height": 400
+    }
+  },
+  "verify": {
+    "ok": true,
+    "kind": "flash",
+    "runtime": "ruffle",
+    "started": true,
+    "consoleErrors": [],
+    "runtimeWarnings": [],
+    "canvasNonBlank": true,
+    "canvasChanged": true,
+    "frames": 395,
+    "fps": 58.1,
+    "durationMs": 6799,
+    "interactions": [
+      {
+        "kind": "click",
+        "detail": "#wr-stage (focus)"
+      },
+      {
+        "kind": "click",
+        "detail": "center (275,200)"
+      },
+      {
+        "kind": "click",
+        "detail": "play-area (275,248)"
+      },
+      {
+        "kind": "click",
+        "detail": "lower-menu (275,312)"
+      },
+      {
+        "kind": "key",
+        "detail": "Enter"
+      },
+      {
+        "kind": "key",
+        "detail": "Space"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowRight"
+      },
+      {
+        "kind": "key",
+        "detail": "ArrowUp"
+      }
+    ],
+    "metadata": {
+      "width": 550,
+      "height": 400,
+      "frameRate": 40,
+      "numFrames": 42,
+      "swfVersion": 7,
+      "backgroundColor": "#444D46",
+      "isActionScript3": false,
+      "uncompressedLength": 1517761
+    },
+    "screenshots": [
+      "<workspace>/evidence/screenshots/start.png",
+      "<workspace>/evidence/screenshots/end.png"
+    ],
+    "notes": [
+      "Gameplay judgment: reached gameplay (idle 0.0038, post-input 0.0084). Sustained stage change after input, clearly above the idle title animation.",
+      "Recorded gameplay GIF (30 frames, 99 KB).",
+      "Stage content changed across the observation window."
+    ],
+    "warnings": [],
+    "gameplay": {
+      "reached": true,
+      "reason": "Sustained stage change after input, clearly above the idle title animation.",
+      "idleActivity": 0.0038,
+      "postInputActivity": 0.0084
+    },
+    "gifPath": "<workspace>/evidence/screenshots/gameplay.gif"
+  },
+  "limits": [
+    "Score saving, logins, or leaderboards that called a server will not work offline.",
+    "Extra levels or content loaded from other SWF files must be captured too, or those parts will be missing."
+  ],
+  "commands": []
+}
