@@ -5,7 +5,7 @@ Keep a Changelog, and this project aims to follow Semantic Versioning.
 
 ## [Unreleased]
 
-## [0.2.0] - unreleased
+## [0.2.0] - 2026-10-23
 
 ### Added
 - `revive`: one command from a dead game's URL (or local file) to a playable link and a gameplay GIF. It

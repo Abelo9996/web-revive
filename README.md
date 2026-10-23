@@ -30,12 +30,9 @@ and checked.
 
 ## Try it
 
-> Not on npm yet. Until the first release, install from GitHub:
-
 ```bash
-git clone https://github.com/Abelo9996/web-revive && cd web-revive
-npm install && npm run build && npm link   # puts `web-revive` on your PATH
-npx playwright install chromium            # the browser web-revive drives
+npm install -g web-revive          # or run it with npx web-revive ...
+npx playwright install chromium    # the browser web-revive drives
 ```
 
 Then revive a game in one command. Point it at a dead page, a direct `.swf`/`.jar`, a local file, or an
