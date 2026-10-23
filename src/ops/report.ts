@@ -121,6 +121,12 @@ function renderMarkdown(b: ReportBundle): string {
     L.push(`- Started: ${b.verify.started ? "yes" : "no"}`);
     L.push(`- Stage non-blank: ${b.verify.canvasNonBlank ? "yes" : "no"} (changed: ${b.verify.canvasChanged ? "yes" : "no"})`);
     L.push(`- Frames: ${b.verify.frames}${b.verify.fps !== null ? `, ${b.verify.fps} fps` : ""} over ${b.verify.durationMs} ms`);
+    if (b.verify.gameplay) {
+      const g = b.verify.gameplay;
+      L.push(`- Reached: ${g.reached ? "gameplay" : "boots only"} (idle activity ${g.idleActivity}, post-input ${g.postInputActivity})`);
+      L.push(`  - ${g.reason}`);
+    }
+    if (b.verify.gifPath) L.push(`- Gameplay GIF: ${path.basename(b.verify.gifPath)}`);
     if (b.verify.interactions.length) L.push(`- Interactions: ${b.verify.interactions.map((i) => `${i.kind}:${i.detail}`).join(", ")}`);
     if (b.verify.runtimeWarnings.length) {
       L.push("", "Runtime warnings (unimplemented features):");

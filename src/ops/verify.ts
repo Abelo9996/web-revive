@@ -1,17 +1,29 @@
-import { mkdir } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { PackageResult, VerifyInteraction, VerifyResult } from "../types.js";
+import type { GameplayAction, PackageResult, VerifyInteraction, VerifyResult } from "../types.js";
 import { Workspace } from "../util/evidence.js";
 import { serve } from "./serve.js";
+import { defaultInputScript, judgeReachedGameplay } from "./gameplay.js";
+import { decodePng, frameActivity, type DecodedImage } from "../util/png.js";
+import { encodeGif } from "../util/gif.js";
 
 export interface VerifyOptions {
   kind?: "flash" | "java";
   runtime?: "ruffle" | "cheerpj";
   /** Seconds to observe frames. */
   observeSeconds?: number;
-  /** Scripted key presses, each after a delay. */
+  /** Scripted key presses, each after a delay. Used only without captureGameplay. */
   keys?: { key: string; afterMs: number }[];
   crossOriginIsolation?: boolean;
+  /**
+   * Run the generic "get past the menu" input script, judge whether gameplay
+   * was reached, and (unless disabled) record a short gameplay GIF.
+   */
+  captureGameplay?: boolean;
+  /** Write the gameplay GIF to this path. Defaults to evidence/gameplay.gif. */
+  gifPath?: string;
+  /** Set false to skip the GIF even when captureGameplay is on. */
+  gif?: boolean;
 }
 
 interface PlaywrightModule {
@@ -27,7 +39,7 @@ interface Page {
   goto: (url: string, opts?: { waitUntil?: string; timeout?: number }) => Promise<unknown>;
   waitForFunction: (fn: string, arg?: unknown, opts?: { timeout?: number }) => Promise<unknown>;
   evaluate: <T>(fn: string) => Promise<T>;
-  screenshot: (opts: { path: string }) => Promise<unknown>;
+  screenshot: (opts?: { path?: string }) => Promise<Buffer>;
   keyboard: { press: (key: string) => Promise<void> };
   mouse: { click: (x: number, y: number) => Promise<void> };
   on: (event: string, cb: (msg: { type: () => string; text: () => string }) => void) => void;
@@ -35,8 +47,9 @@ interface Page {
   $: (selector: string) => Promise<ElementHandle | null>;
 }
 interface ElementHandle {
-  screenshot: (opts: { path: string }) => Promise<Buffer>;
+  screenshot: (opts?: { path?: string }) => Promise<Buffer>;
   click: () => Promise<void>;
+  boundingBox: () => Promise<{ x: number; y: number; width: number; height: number } | null>;
 }
 
 // Hide Ruffle's informational hardware-acceleration modal, which lives in the
@@ -56,7 +69,9 @@ async function loadPlaywright(): Promise<PlaywrightModule | null> {
  * Open the packaged site in headless Chromium and gather evidence: whether the
  * game started, console errors, runtime warnings (unimplemented features),
  * whether the stage draws non-blank and changing frames, fps, response to a
- * scripted click and key presses, and screenshots.
+ * scripted click and key presses, and screenshots. With captureGameplay on, it
+ * also runs the generic input script, judges whether gameplay was reached, and
+ * records a short gameplay GIF.
  */
 export async function verify(workspaceRoot: string, options: VerifyOptions = {}): Promise<VerifyResult> {
   const ws = new Workspace(workspaceRoot);
@@ -111,32 +126,11 @@ export async function verify(workspaceRoot: string, options: VerifyOptions = {})
     const startBuf = await shootStage(page, startShot);
     result.screenshots.push(startShot);
 
-    // Scripted interaction: focus and click the stage, then press keys.
-    const stage = await page.$("#wr-stage");
-    if (stage) {
-      await stage.click().catch(() => undefined);
-      result.interactions.push({ kind: "click", detail: "#wr-stage" });
+    if (options.captureGameplay) {
+      await runGameplayCapture(page, result, options, pkg, shotsDir);
+    } else {
+      await runBasicInteraction(page, result, options);
     }
-    const keys = options.keys ?? [
-      { key: "Space", afterMs: 300 },
-      { key: "ArrowRight", afterMs: 300 },
-    ];
-    for (const step of keys) {
-      await page.waitForTimeout(step.afterMs);
-      await page.keyboard.press(step.key).catch(() => undefined);
-      result.interactions.push({ kind: "key", detail: step.key });
-    }
-
-    // Observe frames.
-    const observeMs = (options.observeSeconds ?? 3) * 1000;
-    const framesBefore = await page.evaluate<number>("window.__wr.frames");
-    const t0 = Date.now();
-    await page.waitForTimeout(observeMs);
-    const framesAfter = await page.evaluate<number>("window.__wr.frames");
-    const elapsed = Date.now() - t0;
-    result.frames = framesAfter - framesBefore;
-    result.fps = elapsed > 0 ? Math.round((result.frames / elapsed) * 1000 * 10) / 10 : null;
-    result.durationMs = elapsed;
 
     await page.evaluate<boolean>(DISMISS_OVERLAYS).catch(() => false);
     const endShot = path.join(shotsDir, "end.png");
@@ -163,6 +157,147 @@ export async function verify(workspaceRoot: string, options: VerifyOptions = {})
   }
 }
 
+/** The original lightweight path: click the stage, press a few keys, observe frames. */
+async function runBasicInteraction(page: Page, result: VerifyResult, options: VerifyOptions): Promise<void> {
+  const stage = await page.$("#wr-stage");
+  if (stage) {
+    await stage.click().catch(() => undefined);
+    result.interactions.push({ kind: "click", detail: "#wr-stage" });
+  }
+  const keys = options.keys ?? [
+    { key: "Space", afterMs: 300 },
+    { key: "ArrowRight", afterMs: 300 },
+  ];
+  for (const step of keys) {
+    await page.waitForTimeout(step.afterMs);
+    await page.keyboard.press(step.key).catch(() => undefined);
+    result.interactions.push({ kind: "key", detail: step.key });
+  }
+
+  const observeMs = (options.observeSeconds ?? 3) * 1000;
+  const framesBefore = await page.evaluate<number>("window.__wr.frames");
+  const t0 = Date.now();
+  await page.waitForTimeout(observeMs);
+  const framesAfter = await page.evaluate<number>("window.__wr.frames");
+  const elapsed = Date.now() - t0;
+  result.frames = framesAfter - framesBefore;
+  result.fps = elapsed > 0 ? Math.round((result.frames / elapsed) * 1000 * 10) / 10 : null;
+  result.durationMs = elapsed;
+}
+
+/**
+ * Sample the idle title, run the generic input script, sample again, judge
+ * whether gameplay was reached, and encode a short GIF of the run. The GIF
+ * spans the whole short clip (the title, the input, then what the stage does
+ * after), so it is representative whether or not gameplay was reached, and it
+ * captures the title-to-gameplay transition when there is one. The judgment,
+ * though, uses only the idle-versus-post comparison. One browser session, one
+ * stage, so the GIF is the same run that was judged.
+ */
+async function runGameplayCapture(
+  page: Page,
+  result: VerifyResult,
+  options: VerifyOptions,
+  pkg: PackageResult | null,
+  shotsDir: string,
+): Promise<void> {
+  const stage = await page.$("#wr-stage");
+  const box = stage ? await stage.boundingBox().catch(() => null) : null;
+  const width = pkg?.stage?.width ?? Math.round(box?.width ?? 640);
+  const height = pkg?.stage?.height ?? Math.round(box?.height ?? 480);
+
+  const framesBefore = await page.evaluate<number>("window.__wr.frames").catch(() => 0);
+  const t0 = Date.now();
+
+  // Frames for the GIF are gathered across the whole run.
+  const gifFrames: DecodedImage[] = [];
+
+  // Idle baseline: what the title does on its own, before any input.
+  const idle = await sampleActivity(page, stage, 6, 110, gifFrames);
+
+  // The generic input script: click the stage and likely button spots, then
+  // press the keys games use to start or move. Give the stage focus first.
+  if (stage) {
+    await stage.click().catch(() => undefined);
+    result.interactions.push({ kind: "click", detail: "#wr-stage (focus)" });
+  }
+  const script = defaultInputScript(width, height);
+  for (const action of script) {
+    if (action.kind === "click" && box) {
+      await page.mouse.click(box.x + action.x, box.y + action.y).catch(() => undefined);
+      result.interactions.push({ kind: "click", detail: `${action.label} (${action.x},${action.y})` });
+    } else if (action.kind === "key") {
+      await page.keyboard.press(action.key).catch(() => undefined);
+      result.interactions.push({ kind: "key", detail: action.key });
+    }
+    await page.waitForTimeout(140);
+  }
+
+  // Post-input: sample activity and keep the decoded frames for the GIF.
+  const post = await sampleActivity(page, stage, 24, 110, gifFrames);
+
+  const framesAfter = await page.evaluate<number>("window.__wr.frames").catch(() => 0);
+  const elapsed = Date.now() - t0;
+  result.frames = framesAfter - framesBefore;
+  result.fps = elapsed > 0 ? Math.round((result.frames / elapsed) * 1000 * 10) / 10 : null;
+  result.durationMs = elapsed;
+
+  const judgment = judgeReachedGameplay(idle, post);
+  result.gameplay = judgment;
+  result.notes.push(
+    `Gameplay judgment: ${judgment.reached ? "reached gameplay" : "boots only"} (idle ${judgment.idleActivity}, post-input ${judgment.postInputActivity}). ${judgment.reason}`,
+  );
+
+  if (options.gif !== false && gifFrames.length >= 2) {
+    try {
+      const gifPath = options.gifPath ?? path.join(shotsDir, "gameplay.gif");
+      const gif = encodeGif(gifFrames, { delayMs: 110, maxWidth: 360 });
+      await writeFile(gifPath, gif);
+      result.gifPath = gifPath;
+      result.notes.push(`Recorded gameplay GIF (${gifFrames.length} frames, ${Math.round(gif.length / 1024)} KB).`);
+    } catch (err) {
+      result.notes.push(`GIF capture failed: ${String(err instanceof Error ? err.message : err)}`);
+    }
+  }
+}
+
+/**
+ * Take `count` stage screenshots `gapMs` apart and return the per-frame
+ * activity (fraction of pixels changed since the previous frame). When a
+ * `collect` array is given, each decoded frame is pushed into it for the GIF.
+ */
+async function sampleActivity(
+  page: Page,
+  stage: ElementHandle | null,
+  count: number,
+  gapMs: number,
+  collect?: DecodedImage[],
+): Promise<number[]> {
+  const activity: number[] = [];
+  let prev: DecodedImage | null = null;
+  for (let i = 0; i < count; i++) {
+    await page.evaluate<boolean>(DISMISS_OVERLAYS).catch(() => false);
+    let buf: Buffer | null = null;
+    try {
+      buf = stage ? await stage.screenshot() : await page.screenshot();
+    } catch {
+      buf = null;
+    }
+    if (buf) {
+      try {
+        const img = decodePng(buf);
+        if (collect) collect.push(img);
+        if (prev) activity.push(frameActivity(prev, img));
+        prev = img;
+      } catch {
+        // A frame that will not decode is skipped; the rest still inform the judgment.
+      }
+    }
+    await page.waitForTimeout(gapMs);
+  }
+  return activity;
+}
+
 function baseResult(kind: "flash" | "java", runtime: "ruffle" | "cheerpj"): VerifyResult {
   return {
     ok: false,
@@ -181,6 +316,8 @@ function baseResult(kind: "flash" | "java", runtime: "ruffle" | "cheerpj"): Veri
     screenshots: [],
     notes: [],
     warnings: [],
+    gameplay: null,
+    gifPath: null,
   };
 }
 
@@ -193,4 +330,4 @@ async function shootStage(page: Page, file: string): Promise<Buffer | null> {
 }
 
 // Re-export for type consumers.
-export type { VerifyInteraction };
+export type { VerifyInteraction, GameplayAction };

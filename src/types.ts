@@ -141,6 +141,21 @@ export interface VerifyInteraction {
   detail: string;
 }
 
+/** One step of the generic "get past the menu" input script. */
+export type GameplayAction =
+  | { kind: "click"; x: number; y: number; label: string }
+  | { kind: "key"; key: string };
+
+/** The verdict on whether the input script reached gameplay. */
+export interface GameplayJudgment {
+  reached: boolean;
+  reason: string;
+  /** Mean fraction of pixels changing per frame before input (idle baseline). */
+  idleActivity: number;
+  /** Mean fraction of pixels changing per frame after the input script. */
+  postInputActivity: number;
+}
+
 export interface VerifyResult {
   ok: boolean;
   kind: GameKind;
@@ -160,6 +175,36 @@ export interface VerifyResult {
   metadata: Record<string, unknown> | null;
   screenshots: string[];
   notes: string[];
+  /** Gameplay judgment, when verify ran the input script. */
+  gameplay: GameplayJudgment | null;
+  /** Path to the recorded gameplay GIF, when one was captured. */
+  gifPath: string | null;
+}
+
+/** The result of the one-command `revive`. */
+export interface ReviveResult {
+  ok: boolean;
+  /** The workspace directory holding game/, site/, and evidence/. */
+  workspace: string;
+  /** The packaged site directory, when packaging succeeded. */
+  siteDir: string | null;
+  /** The preview URL, when a server was started (not with --no-serve). */
+  url: string | null;
+  kind: GameKind;
+  runtime: RuntimeKind;
+  /** "boots" (started and animates) or "gameplay" (reached play) or null. */
+  stage: "boots" | "gameplay" | null;
+  fps: number | null;
+  /** Total wall-clock time for the whole revival, in milliseconds. */
+  durationMs: number;
+  /** Path to the gameplay GIF, when one was captured. */
+  gifPath: string | null;
+  /** Plain-language features that will not work offline. */
+  offlineLimits: string[];
+  /** An honest reason the revival could not complete, when ok is false. */
+  blocker: string | null;
+  /** Paths to the written report (markdown and json). */
+  report: { md: string; json: string } | null;
 }
 
 export interface RecordedCommand {
