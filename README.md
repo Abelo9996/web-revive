@@ -9,9 +9,9 @@
 [![Node 20+](https://img.shields.io/badge/node-20%2B-339933?logo=nodedotjs&logoColor=white)](package.json)
 [![MCP server](https://img.shields.io/badge/MCP-server-5c4ee5)](#use-it-with-your-agent)
 
-<a href="https://abelo9996.github.io/web-revive/"><img src="docs/demo.gif" alt="Math Slash, an open-source ActionScript 2 Flash game, running in the browser through Ruffle, played in headless Chrome during verify" width="420" /></a>
+<a href="https://abelo9996.github.io/web-revive/"><img src="docs/demo.gif" alt="Math Slash, an open-source ActionScript 2 Flash game, running in the browser through Ruffle, captured in headless Chrome by web-revive revive" width="420" /></a>
 
-<sub>Math Slash, a real open-source ActionScript 2 Flash game (<a href="examples/flash-mathslash">examples/flash-mathslash</a>), revived by web-revive and played in headless Chrome during <code>verify</code>.</sub>
+<sub>Math Slash, a real open-source ActionScript 2 Flash game (<a href="examples/flash-mathslash">examples/flash-mathslash</a>), revived and recorded in one command: the GIF above is the gameplay clip <code>web-revive revive</code> saved from its headless-Chrome run.</sub>
 
 **Play the revived games in your browser: [Math Slash](https://abelo9996.github.io/web-revive/math-slash/) (Flash) · [Reversi](https://abelo9996.github.io/web-revive/reversi/) (Java applet)**
 
@@ -35,28 +35,41 @@ and checked.
 ```bash
 git clone https://github.com/Abelo9996/web-revive && cd web-revive
 npm install && npm run build && npm link   # puts `web-revive` on your PATH
-npx playwright install chromium            # the browser `verify` uses
+npx playwright install chromium            # the browser web-revive drives
 ```
 
-Then revive the open-source Flash game from the GIF above:
+Then revive a game in one command. Point it at a dead page, a direct `.swf`/`.jar`, a local file, or an
+Internet Archive capture URL:
 
 ```bash
-WS=/tmp/mathslash && mkdir -p $WS/game && cp examples/flash-mathslash/MathSlash.swf $WS/game/
-web-revive inspect  $WS/game/MathSlash.swf --save $WS
-web-revive runtime ruffle --save $WS
-web-revive package $WS --title "Math Slash" \
-  --source-url https://github.com/andy-shi88/MathSlash \
-  --license examples/flash-mathslash/License.md
-web-revive verify  $WS --seconds 5        # open $WS/site with `web-revive serve $WS/site` to play it
+web-revive revive examples/flash-mathslash/MathSlash.swf --title "Math Slash"
 ```
 
-What `verify` printed on a fresh run (Apple Silicon, Ruffle nightly-2026-10-13):
+It finds the game (recovering it from the Internet Archive if the page is gone), inspects it, fetches the
+right runtime, packages a static site, opens it in headless Chrome, runs a short input script to get past
+the menu, records a gameplay GIF, writes a report, and starts a preview server you can open:
 
 ```
-Verify pass (flash/ruffle)
-Started: true  Non-blank: true  Frames: 179, fps 35.6
-  note: Stage content changed across the observation window.
+  find examples/flash-mathslash/MathSlash.swf
+  inspect MathSlash.swf
+  runtime ruffle
+  package
+  verify (headless Chrome, input script, GIF)
+  boots and animates at 58.1 fps
+
+Revived in 10.4s. Boots and animates at 58.1 fps in headless Chrome.
+Gameplay GIF: .web-revive/MathSlash/evidence/screenshots/gameplay.gif
+Report: .web-revive/MathSlash/evidence/report.md
+
+Play it at: http://127.0.0.1:52891/
 ```
+
+Pass `--no-serve` to skip the preview server, `--no-gif` to skip the GIF, `--out <dir>` to choose the
+workspace, and `--json` for machine-readable output. If a game cannot be revived, `revive` ends with an
+honest reason (an AS3 feature gap, a JNI native library, a file found in no capture), not a false success.
+
+The whole flow is still available as separate subcommands (`find`, `inspect`, `runtime`, `package`,
+`verify`, `serve`, `report`) when you want to drive a step by hand.
 
 ## Use it with your agent
 
@@ -69,9 +82,12 @@ Then just ask:
 
 > "Revive this old Flash game and prove it runs: <url>."
 
-The agent follows [`skills/web-revive/SKILL.md`](skills/web-revive/SKILL.md): find the game (live or from
-the archive), inspect it, say plainly if it is not supported, fetch the runtime, package, verify in a real
-browser, and back every claim with the recorded evidence.
+The agent follows [`skills/web-revive/SKILL.md`](skills/web-revive/SKILL.md). For most requests it makes one
+call to the `revive` tool, which finds the game (live or from the archive), inspects it, fetches the runtime,
+packages, verifies in a real browser, gets past the menu, records a gameplay GIF, and returns the playable
+link, the "boots" vs "reached gameplay" verdict, and what will not work offline, or an honest blocker. The
+per-step tools (`find`, `inspect`, `runtime`, `package`, `verify`, `serve`, `report`) are there for when it
+needs to drive a step by hand.
 
 > `setup` registers `npx -y web-revive mcp`, which works once the package is on npm. Until then, point your
 > agent at the local build instead: `claude mcp add web-revive -- web-revive mcp`.
@@ -80,6 +96,24 @@ browser, and back every claim with the recorded evidence.
 
 Every row was produced end to end on a Mac with web-revive. Each folder in [examples/](examples) has the
 evidence bundle and a screenshot.
+
+### One command, five real targets
+
+These were each revived with a single `web-revive revive <source>` on an Apple Silicon Mac (Ruffle
+nightly, CheerpJ 4.3). The game files are not redistributed here for the copyrighted ones; each folder keeps
+only the report, a screenshot, and the gameplay GIF. Numbers are from one real run; the "boots" vs "reached
+gameplay" verdict depends on whether a generic input script happened to get past that game's menu, so it can
+vary between runs.
+
+| Target | What it is | `revive` source | Result |
+| --- | --- | --- | --- |
+| [flash-qwop](examples/flash-qwop) | QWOP, Bennett Foddy's ragdoll runner (ActionScript 3) | `archive.org/download/flash_games/qwop.swf` | Reached gameplay, about 59.5 fps, GIF recorded |
+| [flash-element-td](examples/flash-element-td) | Flash Element TD (2007), from a dead page recovered only from the Wayback Machine (capture 2007-02-03) | `http://www.novelconcepts.co.uk/flashelementtd/` | Reached gameplay, about 55.1 fps; `find` recovered the real 181 KB movie past a 3 KB sitelock stub |
+| [flash-interactive-buddy](examples/flash-interactive-buddy) | Interactive Buddy, the classic AS2 sandbox toy | `archive.org/download/flash_games/interactive_buddy.swf` | Reached gameplay, about 58.1 fps |
+| [flash-my-friend-pedro](examples/flash-my-friend-pedro) | My Friend Pedro, the original Flash version (AS2) | `archive.org/download/flash_games/my_friend_pedro.swf` | Boots and animates, about 60.0 fps |
+| [java-dots-and-boxes](examples/java-dots-and-boxes) | Dots and Boxes, a real GPL-3.0 Java 1.1 applet (from [kwfenske](https://github.com/kwfenske/dots-and-boxes-game-java)) | `.../dots-and-boxes-game-java/raw/main/dotbox2b.jar` | Boots and animates in CheerpJ, about 5.1 fps; the applet and its license are kept in the folder |
+
+### Driven step by step (0.1)
 
 | Game | What it is | Result |
 | --- | --- | --- |
@@ -104,12 +138,16 @@ flowchart LR
   B --> C[inspect]
   C --> D[runtime<br/>Ruffle / CheerpJ]
   D --> E[package<br/>static site]
-  E --> F[verify<br/>headless Chrome]
+  E --> F[verify<br/>headless Chrome<br/>input script + GIF]
   F --> G[report<br/>evidence bundle]
+  G --> H[serve<br/>playable link]
 ```
+
+`revive` runs that whole chain in one command. The individual steps:
 
 | Step | What it does | Tools it drives |
 | --- | --- | --- |
+| `revive` | The whole chain end to end: find, inspect, runtime, package, verify (with the input script and gameplay GIF), report, then serve the playable link. Returns "boots" vs "reached gameplay", fps, the GIF, what will not work offline, or an honest blocker | all of the below |
 | `find` | Parse `<object>`/`<embed>`/`<applet>`/swfobject on a page; if the page or file is gone, query the Internet Archive CDX API, pick the best capture, and download it | Internet Archive (Wayback CDX) |
 | `inspect` | SWF: compression, version, stage, frame rate, AS1/AS2 vs AS3, external loads. Java: manifest, applet/main class, Java version, networking, file access, native libs. Then a verdict: likely / may have problems / not supported | |
 | `runtime` | Fetch and cache Ruffle's self-hosted web build from its GitHub releases (records the tag and SHA-256); describe the CheerpJ CDN loader and its license | Ruffle releases, CheerpJ CDN |
